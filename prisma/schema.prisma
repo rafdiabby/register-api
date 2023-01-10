@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model M_AGAMA {
+  KODE_AGAMA  Int       @id @db.TinyInt
+  NAMA_AGAMA  String    @db.Char(10)
+  CREATE_USER String    @db.VarChar(30)
+  CREATE_DATE DateTime  @db.DateTime(0)
+  UPDATE_USER String?   @db.VarChar(30)
+  UPDATE_DATE DateTime? @db.DateTime(0)
+}
+
+model M_DATI2 {
+  KODE_MPRO    String    @db.VarChar(20)
+  KODE_MDATI   String    @db.VarChar(20)
+  NAMA_MDATI   String    @db.VarChar(100)
+  ALIAS_MDATI  String?   @db.VarChar(50)
+  STATUS_AKTIF Int?      @db.TinyInt
+  CREATE_USER  String    @db.VarChar(30)
+  CREATE_DATE  DateTime  @db.DateTime(0)
+  UPDATE_USER  String?   @db.VarChar(30)
+  UPDATE_DATE  DateTime? @db.DateTime(0)
+
+  @@id([KODE_MPRO, KODE_MDATI])
+}
+
+model M_KECAMATAN {
+  KODE_MPRO    String    @db.VarChar(20)
+  KODE_MDATI   String    @db.VarChar(20)
+  KODE_MKEC    String    @db.VarChar(20)
+  NAMA_MKEC    String    @db.VarChar(100)
+  ALIAS_MKEC   String?   @db.VarChar(50)
+  STATUS_AKTIF Int?      @db.TinyInt
+  CREATE_USER  String    @db.VarChar(30)
+  CREATE_DATE  DateTime  @db.DateTime(0)
+  UPDATE_USER  String?   @db.VarChar(30)
+  UPDATE_DATE  DateTime? @db.DateTime(0)
+
+  @@id([KODE_MPRO, KODE_MDATI, KODE_MKEC])
+}
+
+model M_KELURAHAN {
+  KODE_MPRO    String    @db.VarChar(20)
+  KODE_MDATI   String    @db.VarChar(20)
+  KODE_MKEC    String    @db.VarChar(20)
+  KODE_MKEL    String    @db.VarChar(20)
+  NAMA_MKEL    String?   @db.VarChar(100)
+  ALIAS_MKEL   String?   @db.VarChar(50)
+  STATUS_AKTIF Int?      @db.TinyInt
+  CREATE_USER  String    @db.VarChar(30)
+  CREATE_DATE  DateTime  @db.DateTime(0)
+  UPDATE_USER  String?   @db.VarChar(30)
+  UPDATE_DATE  DateTime? @db.DateTime(0)
+
+  @@id([KODE_MPRO, KODE_MDATI, KODE_MKEC, KODE_MKEL])
+}
+
+model M_PROPINSI {
+  KODE_MPRO     String    @id @db.VarChar(20)
+  NAMA_MPRO     String    @db.VarChar(100)
+  ALIAS_MPRO    String?   @db.VarChar(20)
+  KODEPETA_MPRO String?   @db.VarChar(10)
+  STATUS_AKTIF  Int?      @db.TinyInt
+  CREATE_USER   String    @db.VarChar(30)
+  CREATE_DATE   DateTime  @db.DateTime(0)
+  UPDATE_USER   String?   @db.VarChar(30)
+  UPDATE_DATE   DateTime? @db.DateTime(0)
+}
+
+model M_USER {
+  UUID                 String    @id @db.VarChar(50)
+  KODE_AGAMA           Int?      @db.TinyInt
+  KODE_MPRO            String?   @db.VarChar(20)
+  KODE_MDATI           String?   @db.VarChar(20)
+  KODE_MKEC            String?   @db.VarChar(20)
+  KODE_MKEL            String?   @db.VarChar(20)
+  USER_NAME            String?   @db.VarChar(50)
+  USER_EMAIL           String?   @db.VarChar(50)
+  USER_PASSWORD        String?   @db.VarChar(50)
+  USER_NIK             String?   @db.VarChar(20)
+  USER_TTL             DateTime? @db.Date
+  USER_NOTELP          String?   @db.VarChar(20)
+  USER_WA              String?   @db.VarChar(20)
+  USER_PHOTOKTP        String?   @db.VarChar(20)
+  USER_PHOTOSELFIE     String?   @db.VarChar(20)
+  USER_FACERECOGNITION String?   @db.VarChar(20)
+  USER_KEWARGANEGARAAN Int?      @db.TinyInt
+  USER_NPWP            String?   @db.VarChar(20)
+  CREATE_DATE          DateTime  @db.DateTime(0)
+  UPDATE_DATE          DateTime? @db.DateTime(0)
+}
