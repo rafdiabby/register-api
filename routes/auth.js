@@ -18,6 +18,11 @@ router.post('/Register', async (req, res) => {
     const password = req.body.password;
     const phone = req.body.phone;
     const kewarganegaraan = req.body.kewarganegaraan;
+    const address = req.body.address;
+    const province = req.body.province;
+    // const kota = req.body.kota;
+    const kelurahan = req.body.kelurahan;
+    const kecamatan = req.body.kecamatan;
 
     const saltRounds = 10;
     let user;
@@ -30,6 +35,10 @@ router.post('/Register', async (req, res) => {
             USER_PASSWORD: hash,
             USER_NOTELP: phone,
             USER_KEWARGANEGARAAN: kewarganegaraan,
+            USER_ADDRESS: address,
+            KODE_MPRO: province,
+            KODE_MKEL: kelurahan,
+            KODE_MKEC: kecamatan,
             CREATE_DATE : new Date()
         }
         try {
@@ -77,12 +86,6 @@ router.post('/Login', async (req, res) => {
             USER_EMAIL: user.USER_EMAIL,
             USER_NOTELP: user.USER_NOTELP
         }
-
-        //todo - ketika berhasil tarik data-data sbb :
-//   . uuid
-//   . user_name
-//   . user_photoprofile
-//   . nomor telepon / email
 
     } catch(err) {}
 

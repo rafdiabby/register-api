@@ -74,24 +74,56 @@ model M_PROPINSI {
 }
 
 model M_USER {
-  UUID                 String    @id @db.VarChar(50)
-  KODE_AGAMA           Int?      @db.TinyInt
-  KODE_MPRO            String?   @db.VarChar(20)
-  KODE_MDATI           String?   @db.VarChar(20)
-  KODE_MKEC            String?   @db.VarChar(20)
-  KODE_MKEL            String?   @db.VarChar(20)
-  USER_NAME            String?   @db.VarChar(50)
-  USER_EMAIL           String?   @db.VarChar(50)
-  USER_PASSWORD        String?   @db.VarChar(50)
-  USER_NIK             String?   @db.VarChar(20)
-  USER_TTL             DateTime? @db.Date
-  USER_NOTELP          String?   @db.VarChar(20)
-  USER_WA              String?   @db.VarChar(20)
-  USER_PHOTOKTP        String?   @db.VarChar(20)
-  USER_PHOTOSELFIE     String?   @db.VarChar(20)
-  USER_FACERECOGNITION String?   @db.VarChar(20)
-  USER_KEWARGANEGARAAN Int?      @db.TinyInt
-  USER_NPWP            String?   @db.VarChar(20)
-  CREATE_DATE          DateTime  @db.DateTime(0)
-  UPDATE_DATE          DateTime? @db.DateTime(0)
+  UUID                  String    @id @db.VarChar(50)
+  KODE_AGAMA            Int?      @db.TinyInt
+  KODE_MPRO             String?   @db.VarChar(20)
+  KODE_MDATI            String?   @db.VarChar(20)
+  KODE_MKEC             String?   @db.VarChar(20)
+  KODE_MKEL             String?   @db.VarChar(20)
+  USER_NAME             String?   @db.VarChar(50)
+  USER_EMAIL            String?   @db.VarChar(50)
+  USER_PASSWORD         String?   @db.VarChar(60)
+  USER_NIK              String?   @db.VarChar(20)
+  USER_TTL              DateTime? @db.Date
+  USER_NOTELP           String?   @db.VarChar(20)
+  USER_WA               String?   @db.VarChar(20)
+  USER_ADDRESS          String?   @db.VarChar(50)
+  USER_PHOTOKTP         String?   @db.VarChar(20)
+  USER_PHOTOSELFIE      String?   @db.VarChar(20)
+  USER_FACERECOGNITION  String?   @db.VarChar(20)
+  USER_GENDER           String?   @db.VarChar(20)
+  USER_STATUSPERNIKAHAN String?   @db.VarChar(20)
+  USER_KEWARGANEGARAAN  Int?      @db.TinyInt
+  USER_NPWP             String?   @db.VarChar(20)
+  CREATE_DATE           DateTime  @db.DateTime(0)
+  UPDATE_DATE           DateTime? @db.DateTime(0)
+}
+
+model M_BANK {
+  KODE_MBANK     String    @id @db.VarChar(20)
+  NAMA_MBANK     String    @default("0") @db.VarChar(50)
+  NOMOR_REKENING String?   @db.VarChar(50)
+  NOMOR_KARTU    String?   @db.VarChar(50)
+  VALID_TAHUN    String    @db.VarChar(4)
+  VALID_BULAN    String    @db.VarChar(2)
+  USER_CCV       String    @default("0") @db.VarChar(3)
+  BUKU_REKENING  String?   @db.VarChar(30)
+  STATUS_AKTIF   Int?      @db.TinyInt
+  CREATE_USER    String    @db.VarChar(36)
+  CREATE_DATE    DateTime  @db.DateTime(0)
+  UPDATE_USER    String?   @db.VarChar(36)
+  UPDATE_DATE    DateTime? @db.DateTime(0)
+}
+
+model M_WALLET {
+  KODE_MWALLET   String    @id @db.VarChar(20)
+  USER_SALDO     Int?      @default(0)
+  USER_WITHDRAWL Int?
+  USER_DEPOSIT   Int?
+  STATUS_AKTIF   Int?      @db.TinyInt
+  CREATE_USER    String    @db.VarChar(36)
+  CREATE_DATE    DateTime  @db.DateTime(0)
+  UPDATE_USER    String?   @db.VarChar(36)
+  UPDATE_DATE    DateTime? @db.DateTime(0)
+  KODE_MBANK     String?   @db.VarChar(20)
 }
