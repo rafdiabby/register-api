@@ -6,12 +6,14 @@ const app = express();
 
 const authRoute = require("./routes/auth");
 const mainRoute = require("./routes/main");
+const coinRoute = require("./routes/coin");
 
 require('dotenv').config();
 app.use(express.json());
 
 app.use("/auth",authRoute);
 app.use("/main",mainRoute);
+app.use("/coin",coinRoute);
 
 app.get("/", (req, res) => {
     res.send("ITS WORKING")
