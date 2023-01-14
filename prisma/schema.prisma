@@ -127,3 +127,4 @@ model M_WALLET {
   UPDATE_DATE    DateTime? @db.DateTime(0)
   KODE_MBANK     String?   @db.VarChar(20)
 }
+
